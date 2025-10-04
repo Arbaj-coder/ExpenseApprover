@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import employeeRoutes from './Routes/employeeRoutes.js';
 dotenv.config(); // <-- load .env first
 
 import express from 'express';
@@ -19,6 +20,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use('/auth', AuthRouter);
 app.use('/products', ProductRouter);
+app.use("/api/employees", employeeRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on ${PORT}`)
