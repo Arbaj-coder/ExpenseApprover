@@ -1,9 +1,12 @@
-import { useState } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import Navbar from "./components/Navbar.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
+import Profile from "./pages/Profile.jsx";
+// import { Toaster } from "react-hot-toast";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
-import Home from "./pages/home"
-import "./App.css";
+import { useState } from "react";
+import { Navigate } from "react-router-dom";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -19,8 +22,12 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route
-          path="/home"
-          element={<PrivateRoute element={<Home />} isAuthenticated={isAuthenticated} />}
+          path="/dashboard"
+          element={<Dashboard />}
+        />
+        <Route
+          path="/profile"
+          element={<PrivateRoute element={<Profile />} isAuthenticated={isAuthenticated} />}
         />
       </Routes>
     </>
@@ -28,3 +35,7 @@ function App() {
 }
 
 export default App
+
+
+
+
