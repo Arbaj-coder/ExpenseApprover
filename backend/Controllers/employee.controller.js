@@ -5,7 +5,7 @@ import {Employee} from "../models/employee.model.js"
 import cookieParser from "cookie-parser";
 import jwt from "jsonwebtoken";
 import { Schema } from "mongoose";
-
+import { uploadcload } from "../utils/cloudinary.js";
 
 const changeCurrentPassword = asyncHandler(async(req,res)=>{
     const {newPassword} = req.body
@@ -32,6 +32,13 @@ const addexpense = asyncHandler(async(req,res)=>{
     {
         throw new ApiError(401,"Invalid User")
     }
+    let receiptLocalPath;
+    if(req.files && Array.isArray(req.files.receipt) && req.files.receipt.length > 0) {
+        receiptLocalPath = req.files.receipt[0]?.path;
+    }
+
+    let receipt = await uploadcload(receiptLocalPath);
+
     const expense = await Expense.create({
         employee: user._id,
         description,
@@ -39,6 +46,8 @@ const addexpense = asyncHandler(async(req,res)=>{
         date,
         remarks,
         amount,
+        receipt: receipt?receipt.url:"",
+        status: 'Pending'
     })
     user.Expenses.push(expense._id)
     await user.save({validateBeforeSave:false});

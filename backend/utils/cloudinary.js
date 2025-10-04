@@ -10,7 +10,7 @@ dotenv.config('../env');
         api_secret: process.env.CLOUDINARY_API_SECRET // Click 'View API Keys' above to copy your API secret
     });
 
-    const upload = async(localFilePath) => {
+    const uploadcload = async(localFilePath) => {
         try {
             if(!localFilePath)return null; 
             const response = await cloudinary.uploader.upload(localFilePath,{
@@ -24,4 +24,4 @@ dotenv.config('../env');
             return null;
         }
     }
-export {upload};
+export {uploadcload};
