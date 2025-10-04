@@ -1,6 +1,6 @@
 import express from "express";
 import bcrypt from "bcryptjs";
-import Employee from "../models/Employee.js";
+import {Employee} from "../Modals/employee.model.js";
 import { generatePassword } from "../utils/generatePassword.js";
 import { sendEmail } from "../utils/sendEmail.js";
 

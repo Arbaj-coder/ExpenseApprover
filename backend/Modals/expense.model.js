@@ -37,7 +37,7 @@ const expenseSchema = new Schema({
         enum:['Pending','Approved','Rejected'],
     },
     receipt:{
-        type:File,
+        type: String,
         default:null
     },
 },{
