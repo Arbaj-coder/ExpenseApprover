@@ -5,6 +5,9 @@ import Signup from './pages/Signup';
 import Home from './pages/Home';
 import { useState } from 'react';
 import RefrshHandler from './RefrshHandler';
+import AdminLogin from './pages/Adminlogin';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -21,6 +24,8 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/home' element={<PrivateRoute element={<Home />} />} />
+        <Route path='forgot-password' element={<ForgotPassword/>}></Route>
+        <Route path='reset-password' element={<ResetPassword/>}></Route>
       </Routes>
     </div>
   );

@@ -1,9 +1,11 @@
-const { signup , login } = require('../Controllers/AuthController');
-const { signupValidation, loginValidation } = require('../Middlewears/Authvalidation');
+import express from 'express';
+import { signup, login, forgotPassword, resetPassword } from '../Controllers/AuthController.js';
 
-const router = require('express').Router();
+const router = express.Router();
 
-router.post('/login' ,loginValidation , login);
-router.post('/signup' ,signupValidation , signup);
+router.post('/signup', signup);
+router.post('/login', login);
+router.post('/forgot-password', forgotPassword);
+router.post('/reset-password', resetPassword);
 
-module.exports = router;
+export default router;
