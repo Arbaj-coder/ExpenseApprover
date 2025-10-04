@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import Footer from "../Compoent/Footer";
-import Navbar from "../Compoent/Navbar";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 function AddEmployee() {
   const [formData, setFormData] = useState({
