@@ -1,4 +1,4 @@
-
+import { Employee } from '../Modals/employee.model';
 const jwt = require('jsonwebtoken');
 const ensureAuthenticated = (req, res, next) => {
        const auth = req.headers['authorization']; 
@@ -8,8 +8,9 @@ const ensureAuthenticated = (req, res, next) => {
     }
     try {
         const decoded = jwt.verify(auth, process.env.JWT_SECRET);
-        req.user = decoded;
-        console.log("hello req.user" , decoded)
+        const user=Employee.findById(decoded._id);
+        req.user = user;
+        console.log("Hello" , decoded)
         next();
     } catch (err) {
         return res.status(403)

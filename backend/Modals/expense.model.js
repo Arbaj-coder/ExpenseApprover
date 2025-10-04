@@ -31,7 +31,15 @@ const expenseSchema = new Schema({
     amount:{
         type:Number,
         required:true
-    }
+    },
+    status:{
+        type:String,
+        enum:['Pending','Approved','Rejected'],
+    },
+    receipt:{
+        type:File,
+        default:null
+    },
 },{
     timestamps:true
 })
