@@ -1,19 +1,10 @@
-const ensureAuthenticated = require('../Middlewears/Auth');
+import express from 'express';
+import { ensureAuthenticated } from '../Middlewears/Auth.js';
+const router = express.Router();
 
-const router = require('express').Router();
-
-router.get('/', ensureAuthenticated, (req, res) => {
-    console.log('---- logged in user detail ---', req.user);
-    res.status(200).json([
-        {
-            name: "mobile",
-            price: 10000
-        },
-        {
-            name: "tv",
-            price: 20000
-        }
-    ])
+// Example route
+router.get('/all', ensureAuthenticated, async (req, res) => {
+    res.json({ message: 'Products route works' });
 });
 
-module.exports = router;
+export default router;  // ✅ default export

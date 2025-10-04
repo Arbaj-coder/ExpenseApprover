@@ -1,10 +1,11 @@
-const Joi = require('joi');
+import Joi from 'joi';
 
 const signupValidation = (req, res, next) => {
     const schema = Joi.object({
         name: Joi.string().min(3).max(100).required(),
         email: Joi.string().email().required(),
-        password: Joi.string().min(4).max(100).required()
+        password: Joi.string().min(4).max(100).required(),
+        country: Joi.string().required()
     });
     const { error } = schema.validate(req.body);
     if (error) {

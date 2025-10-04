@@ -1,20 +1,22 @@
+import jwt from 'jsonwebtoken';
+import { UserModel } from '../Modals/user.js';
 
-const jwt = require('jsonwebtoken');
-const ensureAuthenticated = (req, res, next) => {
-       const auth = req.headers['authorization']; 
-    if (!auth) {
-        return res.status(403)
-            .json({ message: 'Unauthorized, JWT token is require' });
-    }
+export const ensureAuthenticated = async (req, res, next) => {
     try {
-        const decoded = jwt.verify(auth, process.env.JWT_SECRET);
-        req.user = decoded;
-        console.log("hello req.user" , decoded)
+        const authHeader = req.headers['authorization'];
+        if (!authHeader) return res.status(401).json({ message: 'No token provided', success: false });
+
+        const token = authHeader.split(' ')[1]; // Authorization: Bearer <token>
+        if (!token) return res.status(401).json({ message: 'No token provided', success: false });
+
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const user = await UserModel.findById(decoded._id);
+        if (!user) return res.status(401).json({ message: 'Invalid token', success: false });
+
+        req.user = user;
         next();
     } catch (err) {
-        return res.status(403)
-            .json({ message: 'Unauthorized, JWT token wrong or expired' });
+        console.error(err);
+        res.status(401).json({ message: 'Unauthorized', success: false });
     }
-}
-
-module.exports = ensureAuthenticated;
+};
