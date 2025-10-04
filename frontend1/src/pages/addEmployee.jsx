@@ -23,7 +23,7 @@ function AddEmployee() {
     setLoading(true);
     try {
       const res = await axios.post(
-        ${import.meta.env.VITE_API_URL}/employee/add,
+        `${import.meta.env.VITE_API_URL}/employee/add`,
         formData
       );
       toast.success(res.data.message);

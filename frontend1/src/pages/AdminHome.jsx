@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import Footer from "../Compoent/Footer";
-import Navbar from "../Compoent/Navbar";
+import Footer from "../components/Footer.jsx";
+import Navbar from "../Components/Navbar.jsx";
 
 function AdminHome() {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ function AdminHome() {
   // Fetch all employees
   const fetchEmployees = async () => {
     try {
-      const res = await axios.get(${import.meta.env.VITE_API_URL}/employee/all);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/employee/all`);
       setEmployees(res.data.employees);
     } catch (err) {
       console.error(err);
@@ -35,7 +35,7 @@ function AdminHome() {
       {/* Introduction Section */}
       <div className="mb-8 flex flex-col md:flex-row items-center gap-6">
         <img
-          src="/images/admin.png"
+          src="https://static.vecteezy.com/system/resources/thumbnails/000/439/863/small/Basic_Ui__28186_29.jpg"
           alt="Admin"
           className="w-48 h-48 rounded shadow"
         />
