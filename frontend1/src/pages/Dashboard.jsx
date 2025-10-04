@@ -4,7 +4,7 @@ import AddExpenseForm from "../Components/AddExpenseForm.jsx";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Navbar from "../Components/Navbar.jsx";
-
+import Footer from "../components/Footer.jsx";
 export default function Dashboard() {
   const [expenses, setExpenses] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -32,11 +32,11 @@ export default function Dashboard() {
       <AddExpenseForm onExpenseAdded={(newExpense) => setExpenses([newExpense, ...expenses])} />
 
       {/* Expenses List */}
-      <h2 className="text-2xl font-bold mb-4">Your Expenses</h2>
+      <h2 className="text-2xl font-bold mb-4 m-10">Your Expenses</h2>
       {loading ? (
-        <p className="text-gray-600">Loading...</p>
+        <p className="text-gray-600 m-10">Loading...</p>
       ) : expenses.length === 0 ? (
-        <p className="text-gray-600">No expenses found.</p>
+        <p className="text-gray-600 m-10">No expenses found.</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {expenses.map((exp) => (
@@ -44,6 +44,7 @@ export default function Dashboard() {
           ))}
         </div>
       )}
+      <Footer/>
     </div>
   );
 }

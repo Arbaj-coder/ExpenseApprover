@@ -7,6 +7,7 @@ import Login from "./pages/login";
 import Signup from "./pages/signup";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
+import AdminHome from "./pages/AdminHome.jsx";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -25,6 +26,7 @@ function App() {
           path="/dashboard"
           element={<Dashboard />}
         />
+        <Route path="/admin/home" element={<AdminHome />} />
         <Route
           path="/profile"
           element={<PrivateRoute element={<Profile />} isAuthenticated={isAuthenticated} />}
@@ -35,7 +37,5 @@ function App() {
 }
 
 export default App
-
-
 
 
