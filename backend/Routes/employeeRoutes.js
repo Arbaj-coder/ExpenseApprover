@@ -6,6 +6,18 @@ import { sendEmail } from "../utils/sendEmail.js";
 
 const router = express.Router();
 
+
+// Get all employees with their manager names
+router.get("/all", async (req, res) => {
+  try {
+    const employees = await Employee.find().populate("Manager", "Name");
+    res.status(200).json({ employees });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to fetch employees" });
+  }
+});
+
 // Admin adds employee
 router.post("/add", async (req, res) => {
     try {
